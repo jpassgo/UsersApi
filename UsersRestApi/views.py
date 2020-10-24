@@ -14,7 +14,7 @@ def user(request):
         email = body['email']
         age = body['age']
 
-        User(name, email, age)
+        user = User(name, email, age)
         return HttpResponse(
             json.dumps({'request-type': request.method}),
             content_type="application/json")
