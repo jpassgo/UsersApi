@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'cluster0',
-        'HOST': '127.0.0.1',
+        'HOST': 'http://cluster0-shard-00-02.jcfdl.mongodb.net/',
         'PORT': 27017,
     }
 }
