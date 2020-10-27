@@ -1,11 +1,11 @@
 import json
-from .models import User
+from UsersRestApi.models import User
+from UsersRestApi.serializers import UserSerializer
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from serializers import UserSerializer
 
 
 @csrf_exempt
