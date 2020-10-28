@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+from pymongo.mongo_client import MongoClient
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,11 +82,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'cluster0',
-        'HOST': 'http://cluster0-shard-00-02.jcfdl.mongodb.net/',
-        'PORT': 27017,
+        'HOST': 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?ssl=true&ssl_cert_reqs=ssl.CERT_NONE&retryWrites=true&w=majority',
+        'USER': 'admin', 
+        'PASSWORD': 'Pascoepassword'
     }
 }
 
+MongoClient.HOST = 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?retryWrites=true&w=majority'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
