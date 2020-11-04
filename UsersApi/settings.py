@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -39,12 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'UsersRestApi.apps.UsersrestapiConfig',
-    'corsheaders',
     'rest_framework'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,16 +77,16 @@ WSGI_APPLICATION = 'UsersApi.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'cluster0',
-        'HOST': 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?ssl=true&ssl_cert_reqs=ssl.CERT_NONE&retryWrites=true&w=majority',
-        'USER': 'admin', 
-        'PASSWORD': 'Pascoepassword'
-    }
+    # 'default': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'cluster0',
+    #     'HOST': 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?ssl=true&ssl_cert_reqs=ssl.CERT_NONE&retryWrites=true&w=majority',
+    #     'USER': 'admin', 
+    #     'PASSWORD': 'Pascoepassword'
+    # }
 }
 
-MongoClient.HOST = 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?retryWrites=true&w=majority'
+# MongoClient.HOST = 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?retryWrites=true&w=majority'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
