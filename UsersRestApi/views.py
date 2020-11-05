@@ -9,14 +9,22 @@ from pymongo import MongoClient
 import json
 
 
+post_data = {
+    'title': 'Python and MongoDB',
+    'content': 'Learning about Python and MongoDB',
+    'author': 'Jeff'
+}
+
 @csrf_exempt
 def user(request):
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
-        user_serializer = UserSerializer(data=user_data)
-        
-        users_table = create_mongo_connection()
-        users_table.insert_one(user_data)
+        print(user_data)
+
+        client = MongoClient('mongodb://localhost:27107')
+        db = client['users_db']
+        users_table = db.users
+        users_table.insert_one(post_data)
   
         return JsonResponse(user_serializer.data, status=status.HTTP_201_CREATED) 
 
@@ -32,6 +40,8 @@ def user(request):
             json.dumps({'request-type': request.method}),
             content_type="application/json"
         )
+
+
 
 def create_mongo_connection():
     client = MongoClient('mongodb://localhost:27107')
