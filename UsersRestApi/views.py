@@ -9,12 +9,6 @@ from pymongo import MongoClient
 import json
 
 
-post_data = {
-    'title': 'Python and MongoDB',
-    'content': 'Learning about Python and MongoDB',
-    'author': 'Jeff'
-}
-
 @csrf_exempt
 def user(request):
     if request.method == 'POST':
