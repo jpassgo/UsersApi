@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pymongo.mongo_client import MongoClient
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,13 +78,10 @@ WSGI_APPLICATION = 'UsersApi.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'djongo',
-    #     'NAME': 'cluster0',
-    #     'HOST': 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?ssl=true&ssl_cert_reqs=ssl.CERT_NONE&retryWrites=true&w=majority',
-    #     'USER': 'admin', 
-    #     'PASSWORD': 'Pascoepassword'
-    # }
+  'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 # MongoClient.HOST = 'mongodb+srv://admin:Pascoepassword@cluster0.jcfdl.mongodb.net/cluster0?retryWrites=true&w=majority'
