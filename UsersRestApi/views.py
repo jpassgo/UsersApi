@@ -9,7 +9,6 @@ from pymongo import MongoClient
 import json
 
 
-
 @csrf_exempt
 def user(request):
     if request.method == 'POST':
@@ -20,13 +19,14 @@ def user(request):
         db = client['users_db']
         users_table = db.users
         users_table.insert_one(user_data)
-  
-        return JsonResponse(user_serializer.data, status=status.HTTP_201_CREATED) 
+
+        return JsonResponse(user_serializer.data,
+                            status=status.HTTP_201_CREATED)
 
     elif request.method == 'GET':
         # attempt to get the user with given id from mongodb
         return HttpResponse(
-            json.dumps({'request-type': request.method}), 
+            json.dumps({'request-type': request.method}),
             content_type="application/json"
         )
     elif request.method == 'DELETE':
@@ -37,12 +37,11 @@ def user(request):
         )
 
 
-
 def create_mongo_connection():
     client = MongoClient('mongodb://localhost:27107')
 
-    MongoClient('mongodb://localhost:27107', 
-            username='admin',
-            password='6ilyLLIqhRMW')
-    db = client['users_db']  
+    MongoClient('mongodb://localhost:27107',
+                username='admin',
+                password='6ilyLLIqhRMW')
+    db = client['users_db']
     return db.users
