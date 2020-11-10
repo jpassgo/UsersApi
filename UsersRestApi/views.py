@@ -10,16 +10,16 @@ import json
 
 client = create_mongo_connection()
 
+
 @csrf_exempt
 def user(request):
-    
+
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
         return JsonResponse(insert(user_data), status=status.HTTP_201_CREATED)
 
     elif request.method == 'GET':
         # attempt to get the user with given id from mongodb
-
         return HttpResponse(
             json.dumps({'request-type': request.method}),
             content_type="application/json"
@@ -34,12 +34,14 @@ def user(request):
 
 def create_mongo_connection():
     return MongoClient('mongodb://localhost:27107',
-            username='admin',
-            password='6ilyLLIqhRMW')
+                       username='admin',
+                       password='6ilyLLIqhRMW')
+
 
 def get_users_table(client):
     db = client['users_db']
     return db.users
+
 
 def insert(user):
     users_table = get_users_table(client)
