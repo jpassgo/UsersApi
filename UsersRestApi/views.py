@@ -8,7 +8,6 @@ from django.shortcuts import render
 from pymongo import MongoClient
 import json
 
-client = create_mongo_connection()
 
 
 @csrf_exempt
@@ -16,7 +15,11 @@ def user(request):
 
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
-        return JsonResponse(insert(user_data), status=status.HTTP_201_CREATED)
+        user_id = insert(user_data)
+        return HttpResponse(
+            json.dumps({'user-id': f"{user_id}"}),
+            content_type="application/json"
+        )
     elif request.method == 'GET':
         # attempt to get the user with given id from mongodb
         return HttpResponse(
@@ -30,18 +33,14 @@ def user(request):
             content_type="application/json"
         )
 
-
 def create_mongo_connection():
-    return MongoClient('mongodb://localhost:27107',
-                       username='admin',
-                       password='6ilyLLIqhRMW')
-
+    return MongoClient('mongodb://localhost:27017')
 
 def get_users_table(client):
     db = client['users_db']
     return db.users
 
-
 def insert(user):
+    client = create_mongo_connection()
     users_table = get_users_table(client)
-    return users_table.insert_one(user_data)
+    return users_table.insert_one(user).inserted_id
