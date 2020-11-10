@@ -17,7 +17,6 @@ def user(request):
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
         return JsonResponse(insert(user_data), status=status.HTTP_201_CREATED)
-
     elif request.method == 'GET':
         # attempt to get the user with given id from mongodb
         return HttpResponse(
