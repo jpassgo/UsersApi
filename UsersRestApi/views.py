@@ -10,19 +10,10 @@ import json
 
 
 @csrf_exempt
-def user(request, id):
-    print("herererer")
-    if request.method == 'POST':
-        user_data = JSONParser().parse(request)
-        user_id = insert(user_data)
-        return HttpResponse(
-            json.dumps({'user-id': f"{user_id}"}),
-            content_type="application/json"
-        )
-    elif request.method == 'GET':
+def retrieve_user(request, id):
+    if request.method == 'GET':
         id = request.GET.get('id')
         user = retrieve(id)
-        print(user)
         return HttpResponse(
             json.dumps(user),
             content_type="application/json"
@@ -31,6 +22,17 @@ def user(request, id):
         # attempt to delete the user with given id from mongodb
         return HttpResponse(
             json.dumps({'request-type': request.method}),
+            content_type="application/json"
+        )
+
+
+@csrf_exempt
+def create_user(request):
+    if request.method == 'POST':
+        user_data = JSONParser().parse(request)
+        user_id = insert(user_data)
+        return HttpResponse(
+            json.dumps({'user-id': f"{user_id}"}),
             content_type="application/json"
         )
 
@@ -53,4 +55,6 @@ def insert(user):
 def retrieve(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
-    return users_table.find_one({'id': id})
+    user = users_table.find_one({'id': id})
+    user['_id'] = str(user.get('_id'))
+    return user
