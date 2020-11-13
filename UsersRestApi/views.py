@@ -11,8 +11,8 @@ import json
 
 @csrf_exempt
 def retrieve_user(request, id):
+    id = request.GET.get('id')
     if request.method == 'GET':
-        id = request.GET.get('id')
         user = retrieve(id)
         return HttpResponse(
             json.dumps(user),
@@ -56,5 +56,12 @@ def retrieve(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
     user = users_table.find_one({'id': id})
+    user['_id'] = str(user.get('_id'))
+    return user
+
+def delete(id):
+    client = create_mongo_connection()
+    users_table = get_users_table(client)
+    user = users_table.delete_one({'id': id})
     user['_id'] = str(user.get('_id'))
     return user
