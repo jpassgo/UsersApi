@@ -19,9 +19,9 @@ def retrieve_user(request, id):
             content_type="application/json"
         )
     elif request.method == 'DELETE':
-        # attempt to delete the user with given id from mongodb
+        delete(id)
         return HttpResponse(
-            json.dumps({'request-type': request.method}),
+            status=204,
             content_type="application/json"
         )
 
@@ -62,6 +62,4 @@ def retrieve(id):
 def delete(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
-    user = users_table.delete_one({'id': id})
-    user['_id'] = str(user.get('_id'))
-    return user
+    users_table.delete_one({'id': id})
