@@ -59,6 +59,7 @@ def retrieve(id):
     user['_id'] = str(user.get('_id'))
     return user
 
+
 def delete(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
