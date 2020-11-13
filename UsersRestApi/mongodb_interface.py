@@ -1,7 +1,6 @@
 from pymongo import MongoClient
 
 
-
 def create_mongo_connection():
     return MongoClient('mongodb://localhost:27017')
 
@@ -9,6 +8,7 @@ def create_mongo_connection():
 def get_users_table(client):
     db = client['users_db']
     return db.users
+
 
 def insert(user):
     client = create_mongo_connection()
