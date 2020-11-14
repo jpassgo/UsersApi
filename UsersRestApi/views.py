@@ -1,11 +1,7 @@
 from . import mongodb_interface as mongodb
-from UsersRestApi.serializers import UserSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpRequest
-from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
-from UsersRestApi.models import User
-from django.shortcuts import render
 from pymongo import MongoClient
 import json
 
