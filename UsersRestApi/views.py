@@ -10,7 +10,6 @@ from pymongo import MongoClient
 import json
 
 
-
 @csrf_exempt
 def retrieve_user(request, id):
     id = request.GET.get('id')
