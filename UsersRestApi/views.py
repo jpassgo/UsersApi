@@ -16,11 +16,10 @@ def retrieve_user(request, id):
             content_type="application/json"
         )
     elif request.method == 'PUT':
-        user_data = JSONParser().parse(request)
-        user_id = mongodb.update(id, request)
+        updated_user_attributes = JSONParser().parse(request)
+        mongodb.update(id, updated_user_attributes)
         return HttpResponse(
-            json.dumps({'user-id': f"{user_id}"}),
-            content_type="application/json"
+            status=200
         )
     elif request.method == 'DELETE':
         mongodb.delete(id)
