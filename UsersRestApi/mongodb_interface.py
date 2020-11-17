@@ -25,19 +25,18 @@ def retrieve(id):
     user['_id'] = str(user.get('_id'))
     return user
 
-
-def update(id, request):
+def update(id, updated_user_attributes):
     client = create_mongo_connection()
     users_table = get_users_table(client)
-    return users_table.update_one(id, new_values)
+
+    query = { "id": id }
+    new_values = { "$set": updated_user_attributes }
+
+    users_table.update_one(query, new_values)
 
 
 def delete(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
     users_table.delete_one({'id': id})
-
-def determine_value_to_update(request):
-    update_request = JSONParser().parse(request)
-    # get the values to be updated
-    update_request
+    
