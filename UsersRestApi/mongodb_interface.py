@@ -2,7 +2,6 @@ from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
 
 
-
 def create_mongo_connection():
     return MongoClient('mongodb://localhost:27017')
 
@@ -25,12 +24,13 @@ def retrieve(id):
     user['_id'] = str(user.get('_id'))
     return user
 
+
 def update(id, updated_user_attributes):
     client = create_mongo_connection()
     users_table = get_users_table(client)
 
-    query = { "id": id }
-    new_values = { "$set": updated_user_attributes }
+    query = {"id": id}
+    new_values = {"$set": updated_user_attributes}
 
     users_table.update_one(query, new_values)
 
@@ -39,4 +39,3 @@ def delete(id):
     client = create_mongo_connection()
     users_table = get_users_table(client)
     users_table.delete_one({'id': id})
-    
