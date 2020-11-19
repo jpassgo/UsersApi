@@ -1,9 +1,10 @@
 from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
+from django.conf import settings
 
 
 def create_mongo_connection():
-    return MongoClient('mongodb://localhost:27017')
+    return MongoClient(settings.MONGODB_URI)
 
 
 def get_users_table(client):
