@@ -19,8 +19,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', views.create_user),
-    path('user/<str:id>', views.retrieve_user),
+    path('users/', views.create_user),
+    path('users/<str:id>', views.retrieve_user),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework'))
 ]
