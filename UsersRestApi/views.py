@@ -36,5 +36,6 @@ def create_user(request):
         user_id = mongodb.insert(user_data)
         return HttpResponse(
             json.dumps({'user-id': f"{user_id}"}),
-            content_type="application/json"
+            content_type="application/json", 
+            status=201
         )
