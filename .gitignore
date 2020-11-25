@@ -13,3 +13,9 @@ UsersRestApi/migrations/__pycache__/0001_initial.cpython-38.pyc
 UsersApi/__pycache__/wsgi.cpython-38.pyc
 db.sqlite3
 UsersRestApi/__pycache__/mongodb_interface.cpython-38.pyc
+.idea/misc.xml
+.idea/modules.xml
+.idea/UsersApi.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+db.sqlite3
