@@ -7,7 +7,7 @@ import json
 
 
 @csrf_exempt
-def retrieve_user(request, id):
+def delegate_request(request, id):
     id = request.GET.get('id')
     if request.method == 'GET':
         user = mongodb.retrieve(id)

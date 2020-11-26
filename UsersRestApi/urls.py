@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', views.create_user),
-    path('users/<str:id>', views.retrieve_user),
+    path('users/<str:id>', views.delegate_request),
     path('api-auth/', include('rest_framework.urls',
                               namespace='rest_framework'))
 ]
